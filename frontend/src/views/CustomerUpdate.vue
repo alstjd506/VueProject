@@ -14,19 +14,26 @@
 <script>
 import axios from 'axios';
 export default {
+
     data(){return{
         mem : []
     }},
     created(){
         const memId = this.$route.params.id;
         console.log(memId)
-        axios.get(`/api/customer?id=${memId}`)
+        axios.get(`/api/customer/${memId}`)
         .then(res => {
-            this.mem = res.data;
+            this.mem = res.data[0];
+            console.log(this.mem)
         })
     },
-    methods:{}
+    methods:{
+        updateBtn(){
+            axios.put(`/api/customer/${this.mem.id}`, this.mem)
+            .then(res => this.$router.push('/customer'))
+        }
     }
+}
 </script>
 <style>
 </style>
