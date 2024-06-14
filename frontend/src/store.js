@@ -1,17 +1,23 @@
 import { createStore } from "vuex";
+import persistedstate from "vuex-persistedstate";
 
 const store = createStore({
-    state(){
-        return { count:0 }
+  state() {
+    return {
+      user: {},
+    };
+  },
+  getters: {
+    cartCount: (state) => {
+      return state.cart.length;
     },
-    getters: {
-
+  },
+  mutations: {
+    user(state, data) {
+      state.user = data;
     },
-    mutations: {
-        increment(state){
-            state.count ++;
-        }
-    }
-})
+  },
+  plugins: [persistedstate({ paths: ["user"] })], //기본이 local storage
+});
 
 export default store;

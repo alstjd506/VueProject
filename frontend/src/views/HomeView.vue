@@ -28,9 +28,6 @@
     <ProvideinjectChild></ProvideinjectChild>
     <hr>
     <PagingComponent v-bind="page" @go-page="goPage"/>
-    <hr>
-    count : {{ count }}
-    <button type="button" @click="increment">store증가</button>
 
   </div>
 </template>
@@ -90,10 +87,8 @@ export default {
         endIdx = lastPage;
       }
       return {currentPage, firstPage, lastPage, startIdx, endIdx };
-    },
-    increment(){
-      this.$store.commit('increment');
     }
+
   },  
   mounted(){
     // 자식 컴포넌트 이벤트 발생
